@@ -22,32 +22,13 @@ export const routes: Routes = [
         data: { permission: 'dashboard' },
       },
       {
-        path: 'users',
-        loadComponent: () =>
-          import('./features/users/users.component').then((m) => m.UsersComponent),
-        canActivate: [permissionGuard],
-        data: { permission: 'view-users' },
-      },
-      {
         path: 'analytics',
         loadComponent: () =>
           import('./features/analytics/analytics.component').then((m) => m.AnalyticsComponent),
-        canActivate: [permissionGuard],
-        data: { permission: 'view-analytics' },
       },
       {
-        path: 'revenue',
-        loadComponent: () =>
-          import('./features/revenue/revenue.component').then((m) => m.RevenueComponent),
-        canActivate: [permissionGuard],
-        data: { permission: 'revenue' },
-      },
-      {
-        path: 'orders',
-        loadComponent: () =>
-          import('./features/orders/orders.component').then((m) => m.OrdersComponent),
-        canActivate: [permissionGuard],
-        data: { permission: 'orders' },
+        path: 'face-detector',
+        loadComponent: () => import('./features/face-detector/face-detector.component').then((m) => m.FaceDetectorComponent),
       },
       {
         path: 'conversion',
@@ -62,13 +43,6 @@ export const routes: Routes = [
           import('./features/profile/profile.component').then((m) => m.ProfileComponent),
         canActivate: [permissionGuard],
         data: { permission: 'profile' },
-      },
-      {
-        path: 'settings',
-        loadComponent: () =>
-          import('./features/settings/settings.component').then((m) => m.SettingsComponent),
-        canActivate: [permissionGuard],
-        data: { permission: 'settings' },
       },
       {
         path: 'components/forms',
@@ -258,31 +232,6 @@ export const routes: Routes = [
         data: { permission: 'not-found-page' },
       },
       {
-        path: 'pages/signin',
-        loadComponent: () =>
-          import('./features/pages/signin/signin.component').then((m) => m.SigninComponent),
-        canActivate: [permissionGuard],
-        data: { permission: 'signin-page' },
-      },
-      {
-        path: 'pages/change-password',
-        loadComponent: () =>
-          import('./features/pages/change-password/change-password.component').then(
-            (m) => m.ChangePasswordComponent,
-          ),
-        canActivate: [permissionGuard],
-        data: { permission: 'change-password' },
-      },
-      {
-        path: 'pages/user-profile',
-        loadComponent: () =>
-          import('./features/pages/user-profile/user-profile.component').then(
-            (m) => m.UserProfileComponent,
-          ),
-        canActivate: [permissionGuard],
-        data: { permission: 'user-profile-page' },
-      },
-      {
         path: 'pages/timeline',
         loadComponent: () =>
           import('./features/components/timeline/timeline.component').then(
@@ -290,24 +239,6 @@ export const routes: Routes = [
           ),
         canActivate: [permissionGuard],
         data: { permission: 'timeline-page' },
-      },
-      {
-        path: 'pages/email-inbox',
-        loadComponent: () =>
-          import('./features/pages/email-inbox/email-inbox.component').then(
-            (m) => m.EmailInboxComponent,
-          ),
-        canActivate: [permissionGuard],
-        data: { permission: 'email-inbox' },
-      },
-      {
-        path: 'pages/notifications',
-        loadComponent: () =>
-          import('./features/pages/notifications/notifications.component').then(
-            (m) => m.NotificationsComponent,
-          ),
-        canActivate: [permissionGuard],
-        data: { permission: 'notifications-view' },
       },
       {
         path: 'file-manager',
@@ -318,36 +249,9 @@ export const routes: Routes = [
         canActivate: [permissionGuard],
         data: { permission: 'file-manage' },
       },
-      {
-        path: 'crm',
-        loadComponent: () =>
-          import('./features/pages/crm/crm.component').then((m) => m.CrmComponent),
-        canActivate: [permissionGuard],
-        data: { permission: 'crm-view' },
-      },
-      {
-        path: 'reports',
-        loadComponent: () =>
-          import('./features/reports/reports.component').then((m) => m.ReportsComponent),
-        canActivate: [permissionGuard],
-        data: { permission: 'reports' },
-      },
-      {
-        path: 'products',
-        loadComponent: () =>
-          import('./features/products/products.component').then((m) => m.ProductsComponent),
-        canActivate: [permissionGuard],
-        data: { permission: 'products' },
-      },
-      {
-        path: 'system-logs',
-        loadComponent: () =>
-          import('./features/system-logs/system-logs.component').then((m) => m.SystemLogsComponent),
-        canActivate: [permissionGuard],
-        data: { permission: 'system-logs' },
-      },
     ],
   },
+  
   {
     path: 'login',
     loadComponent: () => import('./features/auth/login.component').then((m) => m.LoginComponent),

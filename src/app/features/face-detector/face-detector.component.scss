@@ -1,0 +1,35 @@
+.face-detector {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  background: white;
+  color: rgba(0, 0, 0, 0.87);
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.breadcrumb {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin: 0 16px;
+}
+
+.breadcrumb-item {
+  padding: 4px 8px;
+  font-weight: 500;
+}
+
+.breadcrumb-separator {
+  font-size: 16px;
+  margin: 0 4px;
+}
+
+.content {
+  flex: 1;
+  padding: 16px;
+  overflow: auto;
+  background: #fafafa;
+}

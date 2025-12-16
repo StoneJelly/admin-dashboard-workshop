@@ -2,13 +2,12 @@ import { Component, input, output, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
-import { HasPermissionDirective } from '../shared/directives/has-permission.directive';
-import { HasRoleDirective } from '../shared/directives/has-role.directive';
+
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, RouterModule, HasPermissionDirective, HasRoleDirective],
+  imports: [MatIconModule, MatButtonModule, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })

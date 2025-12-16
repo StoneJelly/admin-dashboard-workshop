@@ -35,7 +35,6 @@ import { UsersService } from '../../core/services/users.service';
     MatMenuModule,
     MatToolbarModule,
     MatListModule,
-    DataTableComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss', './dashboard-sections.scss'],
