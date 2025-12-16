@@ -6,7 +6,9 @@ import {
   signOut,
   User,
   GoogleAuthProvider,
-  signInWithPopup
+  signInWithPopup,
+  sendPasswordResetEmail,
+  onAuthStateChanged
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
@@ -21,7 +23,7 @@ export interface AuthUser {
   role: UserRole;
   permissions: Permission[];
 }
-
+const AUTH_KEY = 'auth_user';
 /* ----------------- SERVICE ----------------- */
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -34,6 +36,16 @@ export class AuthService {
   user = this.currentUser.asReadonly();
   public userRole = computed(() => this.currentUser()?.role ?? null);
 
+  constructor() {
+  const storedUser = localStorage.getItem(AUTH_KEY);
+
+  if (storedUser) {
+    const user = JSON.parse(storedUser) as AuthUser;
+    this.currentUser.set(user);
+    this.authenticated.set(true);
+  }
+}
+  
   /* ========== LOGIN ========== */
   async login(email: string, password: string): Promise<boolean> {
     try {
@@ -72,27 +84,46 @@ export class AuthService {
     return false;
   }
 }
+  /* ================= FORGOT PASSWORD ================= */
+  async forgotPassword(email: string): Promise<boolean> {
+    try {
+      await sendPasswordResetEmail(this.auth, email);
+      return true;
+    } catch (error) {
+      console.error('Reset password error:', error);
+      return false;
+    }
+  }
 
   /* ========== LOGOUT ========== */
   async logout() {
-    await signOut(this.auth);
-    this.currentUser.set(null);
-    this.authenticated.set(false);
-    this.router.navigate(['/login']);
-  }
+  await signOut(this.auth);
+
+  localStorage.removeItem(AUTH_KEY);
+
+  this.currentUser.set(null);
+  this.authenticated.set(false);
+
+  this.router.navigate(['/login']);
+}
 
   /* ========== HELPERS ========== */
   private setUser(user: User, name?: string) {
-    const appUser: AuthUser = {
-      uid: user.uid,
-      email: user.email!,
-      name: name ?? user.displayName ?? 'User',
-      role: 'admin', // default
-      permissions: this.viewerPermissions(),
-    };
-    this.currentUser.set(appUser);
-    this.authenticated.set(true);
-  }
+  const appUser: AuthUser = {
+    uid: user.uid,
+    email: user.email!,
+    name: name ?? user.displayName ?? 'User',
+    role: 'admin',
+    permissions: ['*'], // full access
+  };
+
+  this.currentUser.set(appUser);
+  this.authenticated.set(true);
+
+  // ✅ STORE IN LOCAL STORAGE
+  localStorage.setItem(AUTH_KEY, JSON.stringify(appUser));
+}
+
 
   private viewerPermissions(): Permission[] {
     return [
@@ -116,4 +147,9 @@ export class AuthService {
   hasAnyRole(roles: UserRole[]): boolean {
     return roles.includes(this.currentUser()?.role ?? 'viewer');
   }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem(AUTH_KEY);
+  }
+
 }

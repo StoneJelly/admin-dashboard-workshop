@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -27,6 +28,7 @@ export class ForgotPasswordComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private snackBar = inject(MatSnackBar);
+  private authService = inject(AuthService);
 
   isLoading = signal(false);
   emailSent = signal(false);
@@ -35,15 +37,29 @@ export class ForgotPasswordComponent {
     email: ['', [Validators.required, Validators.email]],
   });
 
-  onSubmit() {
-    if (this.forgotPasswordForm.valid) {
-      this.isLoading.set(true);
+  async onSubmit() {
+    if (this.forgotPasswordForm.invalid) return;
 
-      setTimeout(() => {
-        this.emailSent.set(true);
-        this.isLoading.set(false);
-        this.snackBar.open('Password reset email sent!', 'Close', { duration: 3000 });
-      }, 1500);
+    this.isLoading.set(true);
+
+    const email = this.forgotPasswordForm.value.email!;
+    const success = await this.authService.forgotPassword(email);
+
+    this.isLoading.set(false);
+
+    if (success) {
+      this.emailSent.set(true);
+      this.snackBar.open(
+        'Password reset email sent. Check your inbox.',
+        'Close',
+        { duration: 3000 }
+      );
+    } else {
+      this.snackBar.open(
+        'Failed to send reset email. Try again.',
+        'Close',
+        { duration: 3000 }
+      );
     }
   }
 

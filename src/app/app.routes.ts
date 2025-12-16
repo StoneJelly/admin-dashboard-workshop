@@ -274,15 +274,6 @@ export const routes: Routes = [
         data: { permission: 'change-password' },
       },
       {
-        path: 'pages/forgot-password',
-        loadComponent: () =>
-          import('./features/pages/forgot-password/forgot-password.component').then(
-            (m) => m.ForgotPasswordComponent,
-          ),
-        canActivate: [permissionGuard],
-        data: { permission: 'forgot-password' },
-      },
-      {
         path: 'pages/user-profile',
         loadComponent: () =>
           import('./features/pages/user-profile/user-profile.component').then(
@@ -365,4 +356,11 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./features/auth/register.component').then((m) => m.RegisterComponent),
   },
+  {
+    path: 'forgot-password',
+    loadComponent: () =>
+      import('./features/pages/forgot-password/forgot-password.component').then(
+        (m) => m.ForgotPasswordComponent,
+      ),
+  }
 ];

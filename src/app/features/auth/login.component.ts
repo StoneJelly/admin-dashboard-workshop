@@ -66,6 +66,14 @@ export class LoginComponent {
   }
 }
 
+async loginWithGoogle() {
+  const success = await this.authService.signinWithGoogle();
+  if (!success) {
+    // Optionally show an error message to the user
+    console.error('Google login failed');
+  }
+}
+
 
   fillDemoCredentials(email: string) {
     this.loginForm.patchValue({
@@ -80,5 +88,9 @@ export class LoginComponent {
 
   register() {
     this.router.navigate(['/register']);
+  }
+
+  forgotPassword() {
+    this.router.navigate(['/forgot-password']);
   }
 }

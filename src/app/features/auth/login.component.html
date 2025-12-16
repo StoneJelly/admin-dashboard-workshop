@@ -35,25 +35,6 @@
         </div>
 
         <mat-card-content>
-          <!-- Demo Accounts -->
-          <div class="demo-accounts">
-            <h3>Demo Accounts</h3>
-            <div class="demo-buttons">
-              @for (user of demoUsers; track user.email) {
-                <button
-                  mat-stroked-button
-                  class="demo-btn"
-                  (click)="fillDemoCredentials(user.email)"
-                >
-                  <div class="demo-info">
-                    <span class="demo-role">{{ user.role }}</span>
-                    <span class="demo-email">{{ user.email }}</span>
-                  </div>
-                </button>
-              }
-            </div>
-          </div>
-
           <mat-divider class="divider"></mat-divider>
 
           <form [formGroup]="loginForm" (ngSubmit)="login()">
@@ -96,8 +77,12 @@
 
             <div class="form-options">
               <mat-checkbox formControlName="rememberMe">Remember me</mat-checkbox>
-              <button mat-button type="button" class="forgot-password">Forgot password?</button>
+              <button mat-button type="button" class="forgot-password" (click)="forgotPassword()">Forgot password?</button>
             </div>
+
+            <button mat-raised-button color="primary" class="full-width login-button" (click)="loginWithGoogle()">
+              <mat-icon>google</mat-icon> Sign in with Google
+            </button>
 
             @if (isLoading()) {
               <button
