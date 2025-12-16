@@ -1,6 +1,9 @@
 import { Directive, input, TemplateRef, ViewContainerRef, inject, effect } from '@angular/core';
 import { AuthService, Permission } from '../../core/services/auth.service';
 
+export type UserRole = 'admin' | 'editor' | 'viewer';
+
+
 @Directive({
   selector: '[hasPermission]',
   standalone: true,
@@ -9,6 +12,7 @@ export class HasPermissionDirective {
   private authService = inject(AuthService);
   private templateRef = inject(TemplateRef<unknown>);
   private viewContainer = inject(ViewContainerRef);
+  
 
   hasPermission = input.required<Permission | Permission[]>();
 

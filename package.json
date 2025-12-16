@@ -2,9 +2,7 @@
   "name": "admin-dashboard",
   "version": "0.0.0",
   "author": {
-    "name": "Deepak Uniyal",
-    "email": "developerdeepak29@gmail.com",
-    "url": "https://angularscripts.in/frontend/admin-dashboard"
+    "name": "StoneJelly"
   },
   "scripts": {
     "ng": "ng",
@@ -33,12 +31,14 @@
     "@angular/common": "^20.2.0",
     "@angular/compiler": "^20.2.0",
     "@angular/core": "^20.2.0",
+    "@angular/fire": "^20.0.1",
     "@angular/forms": "^20.2.0",
     "@angular/material": "^20.2.10",
     "@angular/platform-browser": "^20.2.0",
     "@angular/router": "^20.2.0",
     "@angular/service-worker": "^20.2.0",
     "chart.js": "^4.5.1",
+    "firebase": "^12.6.0",
     "jspdf": "^3.0.3",
     "ng2-charts": "^8.0.0",
     "rxjs": "~7.8.0",
