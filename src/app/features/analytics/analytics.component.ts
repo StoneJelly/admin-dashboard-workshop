@@ -154,10 +154,6 @@ export class AnalyticsComponent implements AfterViewInit {
   }
 
   private initializeCharts() {
-    this.chartService.createTrafficChart(this.trafficChart().nativeElement);
-    this.chartService.createRevenueChart(this.revenueChart().nativeElement);
-    this.chartService.createDeviceChart(this.deviceChart().nativeElement);
-    this.chartService.createGeographyChart(this.geographyChart().nativeElement);
   }
 
   onPeriodChange(period: string) {

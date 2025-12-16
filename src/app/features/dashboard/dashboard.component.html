@@ -1,8 +1,8 @@
 <mat-toolbar class="dashboard-toolbar">
   <mat-toolbar-row>
     <span class="toolbar-title">
-      <mat-icon>dashboard</mat-icon>
-      Dashboard Overview
+      <mat-icon>face</mat-icon>
+      Emotion Detection Overview
     </span>
     <span class="toolbar-spacer"></span>
     <button mat-raised-button color="accent" [matMenuTriggerFor]="exportMenu">
@@ -24,24 +24,24 @@
 
 <div class="dashboard-content">
   <div class="kpi-grid">
+    <!-- Total Faces Detected -->
     <mat-card
       appearance="outlined"
       class="kpi-card"
-      (click)="navigateToRevenue()"
       tabindex="0"
       role="button"
     >
       <mat-card-header>
         <div mat-card-avatar class="kpi-avatar revenue">
-          <mat-icon>attach_money</mat-icon>
+          <mat-icon>person_search</mat-icon>
         </div>
-        <mat-card-title>${{ stats().revenue }}</mat-card-title>
-        <mat-card-subtitle>Total Revenue</mat-card-subtitle>
+        <mat-card-title>{{ stats().totalFaces }}</mat-card-title>
+        <mat-card-subtitle>Total Faces Detected</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <div class="kpi-trend positive">
           <mat-icon>trending_up</mat-icon>
-          <span>+12.5% from last month</span>
+          <span>+12.5% from last session</span>
         </div>
       </mat-card-content>
       <mat-card-actions>
@@ -49,24 +49,24 @@
       </mat-card-actions>
     </mat-card>
 
+    <!-- Active Sessions -->
     <mat-card
       appearance="outlined"
       class="kpi-card"
-      (click)="navigateToUsers()"
       tabindex="0"
       role="button"
     >
       <mat-card-header>
         <div mat-card-avatar class="kpi-avatar users">
-          <mat-icon>people</mat-icon>
+          <mat-icon>videocam</mat-icon>
         </div>
-        <mat-card-title>{{ stats().totalUsers }}</mat-card-title>
-        <mat-card-subtitle>Active Users</mat-card-subtitle>
+        <mat-card-title>{{ stats().activeSessions }}</mat-card-title>
+        <mat-card-subtitle>Active Detection Sessions</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <div class="kpi-trend positive">
           <mat-icon>trending_up</mat-icon>
-          <span>+8.2% from last month</span>
+          <span>+8.2% from last session</span>
         </div>
       </mat-card-content>
       <mat-card-actions>
@@ -74,24 +74,24 @@
       </mat-card-actions>
     </mat-card>
 
+    <!-- Dominant Emotion -->
     <mat-card
       appearance="outlined"
       class="kpi-card"
-      (click)="navigateToOrders()"
       tabindex="0"
       role="button"
     >
       <mat-card-header>
         <div mat-card-avatar class="kpi-avatar orders">
-          <mat-icon>shopping_cart</mat-icon>
+          <mat-icon>mood</mat-icon>
         </div>
-        <mat-card-title>856</mat-card-title>
-        <mat-card-subtitle>Total Orders</mat-card-subtitle>
+        <mat-card-title>Happy</mat-card-title>
+        <mat-card-subtitle>Most Detected Emotion</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <div class="kpi-trend negative">
-          <mat-icon>trending_down</mat-icon>
-          <span>-3.1% from last month</span>
+        <div class="kpi-trend positive">
+          <mat-icon>trending_up</mat-icon>
+          <span>+3.1% dominance</span>
         </div>
       </mat-card-content>
       <mat-card-actions>
@@ -99,24 +99,24 @@
       </mat-card-actions>
     </mat-card>
 
+    <!-- Detection Accuracy -->
     <mat-card
       appearance="outlined"
       class="kpi-card"
-      (click)="navigateToConversion()"
       tabindex="0"
       role="button"
     >
       <mat-card-header>
         <div mat-card-avatar class="kpi-avatar conversion">
-          <mat-icon>analytics</mat-icon>
+          <mat-icon>psychology</mat-icon>
         </div>
-        <mat-card-title>3.2%</mat-card-title>
-        <mat-card-subtitle>Conversion Rate</mat-card-subtitle>
+        <mat-card-title>92%</mat-card-title>
+        <mat-card-subtitle>Detection Accuracy</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <div class="kpi-trend positive">
           <mat-icon>trending_up</mat-icon>
-          <span>+5.4% from last month</span>
+          <span>+5.4% improvement</span>
         </div>
       </mat-card-content>
       <mat-card-actions>
@@ -128,8 +128,8 @@
   <div class="charts-section">
     <mat-card appearance="outlined" class="chart-card">
       <mat-card-header>
-        <mat-card-title>Revenue Analytics</mat-card-title>
-        <mat-card-subtitle>Monthly revenue trend</mat-card-subtitle>
+        <mat-card-title>Emotion Trend Analysis</mat-card-title>
+        <mat-card-subtitle>Detected emotions over time</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <canvas #revenueChart></canvas>
@@ -138,7 +138,7 @@
 
     <mat-card appearance="outlined" class="chart-card">
       <mat-card-header>
-        <mat-card-title>User Distribution</mat-card-title>
+        <mat-card-title>Emotion Distribution</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <canvas #userChart></canvas>
@@ -146,6 +146,5 @@
     </mat-card>
   </div>
 
-  <div class="analytics-grid">
-  </div>
+  <div class="analytics-grid"></div>
 </div>
