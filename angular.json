@@ -93,7 +93,12 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"]
+            "styles": ["src/styles.scss"],
+            "scripts": [
+            "src/assets/models/face-api.min.js",
+            "https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.2/drawing_utils.js",
+            "https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4/hands.js"
+  ]
           }
         }
       }
